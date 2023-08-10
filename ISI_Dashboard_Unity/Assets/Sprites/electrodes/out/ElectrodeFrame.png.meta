@@ -43,17 +43,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 157, y: 8, z: 157, w: 8}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0.32
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -121,18 +121,63 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: ElectrodeFrame_0
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 9
+        width: 513
+        height: 1152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 65, y: 54, z: 57, w: 69}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1e10b24c9109404b9debe40257bc5ce
+      internalID: 1265755934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: 253.5, y: -550.5}
+      - {x: 257.5, y: -536.5}
+      - {x: 258.5, y: -530.5}
+      - {x: 258.5, y: 530.5}
+      - {x: 257.5, y: 536.5}
+      - {x: 256.5, y: 546.5}
+      - {x: 241.5, y: 565.5}
+      - {x: 233.5, y: 571.5}
+      - {x: 216.5, y: 578.5}
+      - {x: -215.5, y: 578.5}
+      - {x: -234.5, y: 571.5}
+      - {x: -254.5, y: 551.5}
+      - {x: -258.5, y: 536.5}
+      - {x: -258.5, y: -530.5}
+      - {x: -257.5, y: -536.5}
+      - {x: -253.5, y: -550.5}
+      - {x: -241.5, y: -564.5}
+      - {x: -233.5, y: -571.5}
+      - {x: -215.5, y: -578.5}
+      - {x: 206.5, y: -578.5}
+      - {x: 215.5, y: -577.5}
+      - {x: 223.5, y: -576.5}
+      - {x: 241.5, y: -565.5}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ElectrodeFrame_0: 1265755934
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

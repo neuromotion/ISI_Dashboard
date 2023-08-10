@@ -56,8 +56,8 @@ public class ElectrodePinConversion : MonoBehaviour
         if (PreferedPin > rostral_shift){ PreferedPin -= 128;}
 
         //calculate I and J with formulat
-        byte I = (byte)(7 - ((PreferedPin - 1) % 8));   // find the row
-        byte J = (byte)(PreferedPin - 1 / 8);           // find col
+        byte I = (byte)(7 - ((PreferedPin - 1) % 8));     // find the row
+        byte J = (byte)((PreferedPin - 1) / 8);           // find col
         return new byte[] { I, J };
     }
 
