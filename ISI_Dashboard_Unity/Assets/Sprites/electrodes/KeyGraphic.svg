@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="KeyGraphic.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.66197838"
+     inkscape:cx="672.22739"
+     inkscape:cy="-22.65935"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#f9f9f9;fill-opacity:0.798077;stroke:#999999;stroke-width:1.223;stroke-dasharray:none"
+       id="rect1"
+       width="128.77675"
+       height="60.658409"
+       x="40.611626"
+       y="24.266146"
+       ry="7.3809619"
+       rx="7.3809619" />
+    <circle
+       style="fill:#696969;fill-opacity:0.960784;stroke:none;stroke-width:1.16597"
+       id="path2"
+       cx="55.781246"
+       cy="38.417458"
+       r="2.3930933" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.5917px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ff0000;fill-opacity:0.798077;stroke:none;stroke-width:0.695639"
+       x="61.189175"
+       y="42.03492"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="fill:#4d4d4d;stroke-width:0.69564"
+         x="61.189175"
+         y="42.03492">Off</tspan></text>
+    <circle
+       style="fill:#0000ff;fill-opacity:0.960784;stroke:none;stroke-width:1.16597"
+       id="circle2"
+       cx="55.074696"
+       cy="55.233379"
+       r="2.3930933" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.5917px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#0000ff;fill-opacity:0.798077;stroke:none;stroke-width:0.695639"
+       x="60.482624"
+       y="58.850842"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="fill:#0000ff;stroke-width:0.69564"
+         x="60.482624"
+         y="58.850842">Ano</tspan></text>
+    <circle
+       style="fill:#ff0000;fill-opacity:0.960784;stroke:none;stroke-width:1.16597"
+       id="circle4"
+       cx="115.71932"
+       cy="55.233379"
+       r="2.3930933" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.5917px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ff0000;fill-opacity:0.798077;stroke:none;stroke-width:0.695639"
+       x="121.12722"
+       y="58.850842"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="fill:#ff0000;stroke-width:0.69564"
+         x="121.12722"
+         y="58.850842">Cath</tspan></text>
+    <circle
+       style="fill:#008000;fill-opacity:0.960784;stroke:none;stroke-width:1.16597"
+       id="circle5"
+       cx="55.074696"
+       cy="73.603714"
+       r="2.3930933" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.5917px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#008000;fill-opacity:0.798077;stroke:none;stroke-width:0.695639"
+       x="60.482624"
+       y="77.221176"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="fill:#008000;stroke-width:0.69564"
+         x="60.482624"
+         y="77.221176">Gnd</tspan></text>
+    <circle
+       style="fill:#800080;fill-opacity:0.960784;stroke:none;stroke-width:1.16597"
+       id="circle6"
+       cx="115.71932"
+       cy="73.603714"
+       r="2.3930933" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.5917px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#800080;fill-opacity:0.798077;stroke:none;stroke-width:0.695639"
+       x="121.12722"
+       y="77.221176"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="fill:#800080;stroke-width:0.69564"
+         x="121.12722"
+         y="77.221176">Ref</tspan></text>
+  </g>
+</svg>

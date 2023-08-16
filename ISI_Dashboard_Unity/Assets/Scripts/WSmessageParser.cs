@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using WebSocketSharp;           //installed with NuGetForUnity
 using Newtonsoft.Json.Linq;     //installed with NuGetForUnity
@@ -32,12 +32,17 @@ public class WSmessageParser : MonoBehaviour
 /// </summary>
 {
     public SOH soh;
+    public List<StimGroup> stimGroups;
     private WebSocket ws;
 
     private void Start()
     {
-        // establish ws connection
-        string ip_addr = "192.168.42.1";
+        // Initialize objects
+        InitObjs();
+
+        // Establish WebSocket connection
+        //string ip_addr = "192.168.42.1";
+        string ip_addr = "192.168.42.150";
         string port = "7890";
         string url = "ws://" + ip_addr + ":" + port;
         ws = new WebSocket(url);
@@ -91,14 +96,14 @@ public class WSmessageParser : MonoBehaviour
         // parse input json string into a json object
         JObject jsonMsg = JObject.Parse(e.Data);
         Debug.Log("JSON message type:" + jsonMsg["msg_type"]);
-        
+
         // deserialize SOH packet
-        if ((string)jsonMsg["msg_type"] == "soh_json") 
+        if ((string)jsonMsg["msg_type"] == "soh_json")
         {
             try
             {
                 soh = JsonConvert.DeserializeObject<SOH>(jsonMsg["msg"].ToString());
-                Debug.Log(soh.aspectRatio);
+                //Debug.Log(soh.aspectRatio);
             }
             catch (Exception ex)
             {
@@ -106,12 +111,13 @@ public class WSmessageParser : MonoBehaviour
             }
         }
 
-        //deserialize XXX packet
-        else if((string)jsonMsg["msg_type"] == "soh_json")
+        //deserialize stim_ack_json packet
+        else if ((string)jsonMsg["msg_type"] == "stim_ack_json")
         {
             try
             {
-                soh = JsonConvert.DeserializeObject<SOH>(jsonMsg["msg"].ToString());
+                stimGroups = JsonConvert.DeserializeObject<List<StimGroup>>(jsonMsg["msg"].ToString());
+                //Debug.Log(JsonConvert.SerializeObject(stimGroups[0]));
             }
             catch (Exception ex)
             {
@@ -121,10 +127,21 @@ public class WSmessageParser : MonoBehaviour
 
         else
         {
-            Debug.LogError("message type deserializer not yet defined.(check spelling)"); 
+            //Debug.LogError("message type deserializer not yet defined.(check spelling)"); 
         }
 
+    }
 
+    void InitObjs()
+    // place empty values into some of the deserialized objects to avoid
+    // "Object Reference not set to instance of object" errors
+    // is there a better way to do this>?
+    {
+        soh = new SOH();
+        soh.Gnd = new uint[0];
+        soh.Ref = new uint[0];
+        
+        stimGroups = new List<StimGroup>();
     }
 
     void OnApplicationQuit()
@@ -167,6 +184,20 @@ public class SOH
 
 }
 
+public class StimGroup
+{
+    public uint[] elecCath { get; set; }
+    public uint[] elecAno { get; set; }
+    public float amp { get; set; }
+    public float freq { get; set; }
+    public float pulseWidth { get; set; }
+    public uint isContinuous { get; set; }
+}
+
+
+//{"client_ip": "192.168.42.150", "client_id": 0, "msg_type": "stim_ack_json", "msg": "[{\"elecCath\": [1, 12], \"elecAno\": [3, 4], \"amp\": 300, \"freq\": 20, \"pulseWidth\": 100, \"isContinuous\": 0, \"res\": 0, \"nipTime\": 0, \"time\": 13317421304400}, {\"elecCath\": [7, 8], \"elecAno\": [9, 10], \"amp\": 200, \"freq\": 30, \"pulseWidth\": 167, \"isContinuous\": 0, \"res\": 0, \"nipTime\": 0, \"time\": 13317421304400}]"}
+
+
 
 
 
@@ -176,3 +207,5 @@ public class SOH
 // https://github.com/sta/websocket-sharp       // a websocket package for C# 
 
 // https://code-maze.com/csharp-read-and-process-json-file/ for deserializing example. 
+
+// Requirement 5.2.13:  Device Set Embedded Configuration

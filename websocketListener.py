@@ -3,7 +3,8 @@ import asyncio
 import json
 
 async def listen():
-    ip_addr = "192.168.42.1"
+    # ip_addr = "192.168.42.1"
+    ip_addr = "192.168.42.150"
     port = "7890"
     url = "ws://" + ip_addr + ":" + port
 

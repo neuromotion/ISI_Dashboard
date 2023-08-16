@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.0356019"
-     inkscape:cx="438.39239"
-     inkscape:cy="284.85849"
+     inkscape:cx="438.3924"
+     inkscape:cy="284.8585"
      inkscape:window-width="1920"
      inkscape:window-height="1018"
      inkscape:window-x="-6"
@@ -40,25 +40,25 @@
      id="layer1">
     <text
        xml:space="preserve"
-       style="font-size:20.1px;fill:#000000;fill-opacity:0.798077;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
+       style="font-size:19.4028px;fill:#000000;fill-opacity:0.798077;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
        x="68.210526"
        y="29.803366"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#000000;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.4028px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#000000;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
          x="68.210526"
          y="29.803366">Caudal</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:20.1px;fill:#000000;fill-opacity:0.798077;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
-       x="72.857666"
-       y="55.352112"
+       style="font-size:19.4028px;fill:#000000;fill-opacity:0.798077;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
+       x="73.879616"
+       y="49.731388"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#000000;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
-         x="72.857666"
-         y="55.352112">Rostral</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.4028px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#000000;stroke:none;stroke-width:1.26614;stroke-dasharray:none"
+         x="73.879616"
+         y="49.731388">Rostral</tspan></text>
   </g>
 </svg>

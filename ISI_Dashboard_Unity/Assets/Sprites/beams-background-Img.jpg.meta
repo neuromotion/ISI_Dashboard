@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d013cd0c714fb14eae5b38732978122
+guid: 28dabf7445e25934884529c4772356d4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,49 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Labels_Caudal
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 1036
-        width: 288
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b4142873ec07c947963d0eb3f16bfb9
-      internalID: 1237458629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Labels_Rostral
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 965
-        width: 251
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ea7f567dec0a1741a82cd177f23e0b7
-      internalID: -207666196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -174,22 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Labels_10: 1161412998
-      Labels_11: 1673107500
-      Labels_12: 2072439517
-      Labels_13: 954886477
-      Labels_14: 505741632
-      Labels_2: -1045472084
-      Labels_3: -637411571
-      Labels_4: -534287691
-      Labels_5: 580601045
-      Labels_6: 862661077
-      Labels_7: -1283578697
-      Labels_8: 586376855
-      Labels_9: 713596999
-      Labels_Caudal: 1237458629
-      Labels_Rostral: -207666196
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
