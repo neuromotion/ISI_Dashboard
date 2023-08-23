@@ -25,17 +25,33 @@ async def hello(websocket):
         await websocket.send(json.dumps(msg))
         await asyncio.sleep(.2)
 
-        # configure stim group packet
-        sd1 = {}
-        sd1["elecCath"] = [1,12,13,144]
-        sd1["elecAno"]  = [3,4,145]
-        sd1["amp"] = 300
-        sd1["freq"] = 20 
-        sd1["pulseWidth"] = 100 
-        sd1["isContinuous"] = 0
+        # configure multiple stim group packets
+        sg1 = {}
+        sg1["elecCath"] = [1,12,14]
+        sg1["elecAno"]  = [3,5]
+        sg1["amp"] = 300
+        sg1["freq"] = 20 
+        sg1["pulseWidth"] = 100 
+        sg1["isContinuous"] = 0
+
+        sg2 = {}
+        sg2["elecCath"] = [2,13,15]
+        sg2["elecAno"]  = [4,6]
+        sg2["amp"] = 100
+        sg2["freq"] = 15 
+        sg2["pulseWidth"] = 70
+        sg2["isContinuous"] = 0
+
+        sg3 = {}
+        sg3["elecCath"] = [129,130,131]
+        sg3["elecAno"]  = [159,160]
+        sg3["amp"] = 100
+        sg3["freq"] = 25 
+        sg3["pulseWidth"] = 120 
+        sg3["isContinuous"] = 0
 
         msg = {}
-        msg['msg'] = sd1
+        msg['msg'] = [sg1, sg2, sg3]  # list of dictionaries
         msg['msg_type'] = 'stim_ack_json'
         
         await websocket.send(json.dumps(msg))

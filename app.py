@@ -13,6 +13,8 @@ from dash_extensions.enrich import html, dcc, Output, Input, DashProxy,State
 
 # custom components library.
 from customComponents import ElectrodeArray
+import loggers as log
+import utils
 
 # initialize plotting objects
 CaudalArray = ElectrodeArray("Caudal")
@@ -73,6 +75,8 @@ def parseMessage(e):
     
     elif ed['msg_type'] == "stim_ack_json":
         out[2] = ed['msg']
+
+    #log.parseMessage(out)
     
     return out
 
@@ -88,25 +92,28 @@ def updateElectrodeArrays(stim,soh):
     update the Caudal and Rostral Electrode
     arrays based on data becoming availble in
     the dcc.store objects
+    inputs:
+        stim is a list of dictionaries
+        soh is a dictionary
     """
-    # guard clause (startup has some extra nones)
+    # guard clause (startup may have some extra Nones)
     if stim is None or soh is None: 
         print("hit",flush=True)
         return dash.no_update , dash.no_update
-
+    
     # repackage pins
     Pins = {}
     Pins['Gnd']       = soh['Gnd']
     Pins['Ref']       = soh['Ref']
-    Pins['elecCath']  = stim['elecCath']
-    Pins['elecAno']   = stim['elecAno']
-    
+    Pins['elecCath']  = utils.dictCollect(stim,'elecCath')
+    Pins['elecAno']    = utils.dictCollect(stim,'elecAno')
+
     #pass all pins in, arrays handle rendering
     CaudalArray = ElectrodeArray("Caudal")
     CaudalArray.update(Pins)
     RostralArray = ElectrodeArray("Rostral")
     RostralArray.update(Pins)
-
+    
     return CaudalArray.fig , RostralArray.fig
 
 
