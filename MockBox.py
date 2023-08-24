@@ -27,16 +27,16 @@ async def hello(websocket):
 
         # configure multiple stim group packets
         sg1 = {}
-        sg1["elecCath"] = [1,12,14]
-        sg1["elecAno"]  = [3,5]
+        sg1["elecCath"] = [1,12,14,31,28,29]
+        sg1["elecAno"]  = [3]
         sg1["amp"] = 300
         sg1["freq"] = 20 
         sg1["pulseWidth"] = 100 
         sg1["isContinuous"] = 0
 
         sg2 = {}
-        sg2["elecCath"] = [2,13,15]
-        sg2["elecAno"]  = [4,6]
+        sg2["elecCath"] = [4,6]
+        sg2["elecAno"]  = [2,13,15,27]
         sg2["amp"] = 100
         sg2["freq"] = 15 
         sg2["pulseWidth"] = 70

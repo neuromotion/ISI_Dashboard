@@ -13,12 +13,14 @@ from dash_extensions.enrich import html, dcc, Output, Input, DashProxy,State
 
 # custom components library.
 from customComponents import ElectrodeArray
+from customComponents import StimGroup
 import loggers as log
 import utils
 
 # initialize plotting objects
 CaudalArray = ElectrodeArray("Caudal")
 RostralArray = ElectrodeArray("Rostral")
+
 
 app = DashProxy(external_stylesheets=[dbc.themes.BOOTSTRAP]) #does this need to be dash proxy?
 app.layout = html.Div([
@@ -32,6 +34,9 @@ app.layout = html.Div([
                 dcc.Graph(figure=CaudalArray.fig,id='Caudal_array', style={'height': 650,'width':'100%'}),
             ])
         ], width=3),
+        dbc.Col([
+                html.Div(id='CaudalStimGroups')
+        ], width=3,style={'padding': 10, 'flex': 1}),
     ]),
     dbc.Row([
         dbc.Col([
@@ -39,7 +44,13 @@ app.layout = html.Div([
                 dcc.Graph(figure=RostralArray.fig,id='Rostral_array', style={'height': 650,'width':'100%'}),
             ])
         ], width=3),
+        dbc.Col([
+                html.Div(id='RostralStimGroups')
+        ], width=3,style={'padding': 10, 'flex': 1}),
     ]),
+    # dbc.Col([
+    #     html.Div(id="StimGroups")
+    # ])
 ])
 
 @app.callback(
@@ -115,6 +126,62 @@ def updateElectrodeArrays(stim,soh):
     RostralArray.update(Pins)
     
     return CaudalArray.fig , RostralArray.fig
+
+
+@app.callback( 
+        Output("CaudalStimGroups", "children"),
+        Output("RostralStimGroups", "children"),
+        Input("stim_ack_json", "data"),
+    )
+def updateStimGroups(stimGroups):
+    """
+    update Stim Groups graphs based on data
+    becoming availble in the dcc.store objects
+    inputs:
+        stimGroups is a list of dictionaries
+    outputs:
+        a list of graph objects
+    """
+    # guard clause 
+    if stimGroups is None:
+        return dash.no_update , dash.no_update
+     
+    # there should never be mixed pins, be we will define 
+    # the side of the stim group to which location has more
+    # pins
+    def determineSGloc(sgPacket):
+        pins = []
+        pins.extend(sgPacket['elecCath']) 
+        pins.extend(sgPacket['elecAno'])
+        
+        nCpins = 0; nRpins = 0
+        for pin in pins: 
+            if pin > 128: 
+                nRpins+= 1
+            else: 
+                nCpins+=1 
+        
+        if nCpins >= nRpins: 
+            return "Caudal"
+        else:
+            return "Rostral"
+        return pins
+    
+
+    # parse stim packet
+    caudalFigs = [] ; rostralFigs = []
+    for groupNum,sgPacket in enumerate(stimGroups):
+        sg = StimGroup()
+        sg.update(sgPacket,groupNum) 
+        loc = determineSGloc(sgPacket)
+        if loc == "Caudal":
+            caudalFigs.append(dcc.Graph(figure=sg.fig))
+        elif loc == "Rostral":
+            rostralFigs.append(dcc.Graph(figure=sg.fig))
+
+    return caudalFigs , rostralFigs 
+
+
 
 
 # @app.callback( 

@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 import dash
@@ -61,7 +60,7 @@ class ElectrodeArray():
         update the state the electrode array figure 
         inputs: 
             a dictionary with the following fields:
-                eleCath 
+                elecCath 
                 elecAno
                 Gnd
                 Ref
@@ -78,6 +77,8 @@ class ElectrodeArray():
        # redraw: 
         self.fig.data[0]['marker']['color'] = self.df['color']
        
+
+
 
 class StimGroup():
     def __init__(self):
@@ -103,8 +104,8 @@ class StimGroup():
         """
         input:
         stim group dictionary with fields: 
-            'eleCath' - list of cathode electrodes
-            'eleAno'  - list of cathode electrodes
+            'elecCath' - list of cathode electrodes
+            'elecAno'  - list of cathode electrodes
             'amplitude' - amplitude of stimulation
             'freq' - frequency of stimulation
             'phase' - phase of stimulation
@@ -112,16 +113,16 @@ class StimGroup():
         """ 
         # layout electrodes and cathodes in rows
         ncols = 4
-        eleCath = sgdict['eleCath']
-        eleAno  = sgdict['eleAno']
+        elecCath = sgdict['elecCath']
+        elecAno  = sgdict['elecAno']
 
-        nrows = int(np.ceil(len(eleCath)/ncols) + np.ceil(len(eleAno)/ncols))
+        nrows = int(np.ceil(len(elecCath)/ncols) + np.ceil(len(elecAno)/ncols))
         padding = lambda n: ncols*int(np.ceil(n/ncols)) - n
-        eleCathPadded = eleCath + [-1] * padding(len(eleCath))         # pad with -1's for spacing
-        eleAnoPadded  = eleAno  + [-1] * padding(len(eleAno ))         # pad with -1's
+        elecCathPadded = elecCath + [-1] * padding(len(elecCath))         # pad with -1's for spacing
+        elecAnoPadded  = elecAno  + [-1] * padding(len(elecAno))         # pad with -1's
 
-        colorCath = ['red'] *  len(eleCathPadded)
-        colorAno =  ['blue'] * len(eleAnoPadded)
+        colorCath = ['red'] *  len(elecCathPadded)
+        colorAno =  ['blue'] * len(elecAnoPadded)
 
         x, y = np.meshgrid(np.arange(0, 4), np.arange(0, nrows))
         y = nrows -(y + 1) # reverse points along y axis
@@ -129,7 +130,7 @@ class StimGroup():
         df = pd.DataFrame({'x': x.ravel(),
                         'y': y.ravel(),
                         'color':colorCath + colorAno,
-                        'label':eleCathPadded + eleAnoPadded})
+                        'label':elecCathPadded + elecAnoPadded})
 
         # pop the rows with -1 padding, everything will be properly aligned
         df = df.loc[~df['label'].isin([-1])]
@@ -152,7 +153,7 @@ class StimGroup():
             ))
 
         # annotate amplitude, freq and phase for SG
-        afp = (int(sgdict['amplitude']) , int(sgdict['freq']), int(sgdict['phase']))
+        afp = (int(sgdict['amp']) , int(sgdict['freq']), int(sgdict['pulseWidth']))
         fig.add_annotation(
                     xref="paper",
                     yref="paper",
