@@ -36,6 +36,8 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
+import Myocycle from "layouts/myocycle";
+import Ephys from "layouts/ephys";
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
@@ -47,6 +49,7 @@ import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import PedalBikeIcon from "@mui/icons-material/PedalBike";
 
 const routes = [
   {
@@ -59,12 +62,36 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    name: "Ephys",
+    key: "ephys",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/ephys",
+    component: <Ephys />,
   },
+  {
+    type: "collapse",
+    name: "Myocycle",
+    key: "myocycle",
+    icon: <PedalBikeIcon fontSize="small">PedalBike</PedalBikeIcon>,
+    route: "/myocycle",
+    component: <Myocycle />,
+  },
+  // {
+  //   type: "collapse",
+  //   name: "Dashboard",
+  //   key: "dashboard",
+  //   icon: <Icon fontSize="small">dashboard</Icon>,
+  //   route: "/dashboard",
+  //   component: <Dashboard />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Tables",
+  //   key: "tables",
+  //   icon: <Icon fontSize="small">table_view</Icon>,
+  //   route: "/tables",
+  //   component: <Tables />,
+  // },
   // {
   //   type: "collapse",
   //   name: "Billing",

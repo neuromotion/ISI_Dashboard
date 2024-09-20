@@ -288,7 +288,7 @@ function Configurator() {
         <MDBox mt={3} mb={2}>
           <MDButton
             component={Link}
-            href="https://www.creative-tim.com/learning-lab/react/quick-start/material-dashboard/"
+            href="https://github.com/neuromotion/ISI_Dashboard"
             target="_blank"
             rel="noreferrer"
             color={darkMode ? "light" : "dark"}
@@ -298,7 +298,7 @@ function Configurator() {
             view documentation
           </MDButton>
         </MDBox>
-        <MDBox display="flex" justifyContent="center">
+        {/* <MDBox display="flex" justifyContent="center">
           <GitHubButton
             href="https://github.com/creativetimofficial/material-dashboard-react"
             data-icon="octicon-star"
@@ -338,7 +338,7 @@ function Configurator() {
               &nbsp; Share
             </MDButton>
           </MDBox>
-        </MDBox>
+        </MDBox> */}
       </MDBox>
     </ConfiguratorRoot>
   );
