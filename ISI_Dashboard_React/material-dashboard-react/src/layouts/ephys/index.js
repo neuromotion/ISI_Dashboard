@@ -31,6 +31,9 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
+// Graphs
+import ScatterExample from "graphs/scatterExample";
+
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
@@ -60,7 +63,8 @@ function Ephys() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
+              <ScatterExample />
+              {/* <ComplexStatisticsCard
                 icon="leaderboard"
                 title="Today's Users"
                 count="2,300"
@@ -69,7 +73,7 @@ function Ephys() {
                   amount: "+3%",
                   label: "than last month",
                 }}
-              />
+              /> */}
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
