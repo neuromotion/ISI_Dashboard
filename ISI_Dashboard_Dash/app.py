@@ -14,44 +14,184 @@ from dash_extensions.enrich import html, dcc, Output, Input, DashProxy,State
 # custom components library.
 from customComponents import ElectrodeArray
 from customComponents import StimGroup
+from customComponents import backImage as BackImage
+from customComponents import stimScope as StimScope
 import loggers as log
 import utils
 
 # initialize plotting objects
 CaudalArray = ElectrodeArray("Caudal")
 RostralArray = ElectrodeArray("Rostral")
+backImage = BackImage()
+stimScope = StimScope()
 
 
 app = DashProxy(external_stylesheets=[dbc.themes.BOOTSTRAP]) #does this need to be dash proxy?
-app.layout = html.Div([
+# app.layout = dbc.Container([
+#     # WebSocket connection
+#     #WebSocket(id="ws", url="ws://192.168.42.150:7890"),
+#     WebSocket(id="ws", url="ws://127.0.0.1:7890"),
+    
+#     # Data stores
+#     dcc.Store(id='soh_json'),
+#     dcc.Store(id='stim_ack_json'),
+    
+#     # Main row with three columns
+#     dbc.Row([
+#         # Left column - Caudal Array
+#         dbc.Col([
+#             html.Div([
+#                 dcc.Graph(
+#                     figure=CaudalArray.fig,
+#                     id='Caudal_array',
+#                     style={'height': '1000px', 'width': '100%'}
+#                 )
+#             ])
+#         ], width=4),
+        
+#         # Middle column - Image
+#         dbc.Col([
+#             html.Div([
+#                 dcc.Graph(
+#                         figure=backImage.fig,
+#                         id='back_image',
+#                         style={'height': '1000px', 'width': '100%'}
+#                 ),
+#             ]),
+#         ], width=4),
+        
+#         # Right column - Rostral Array
+#         dbc.Col([
+#             html.Div([
+#                 dcc.Graph(
+#                     figure=RostralArray.fig,
+#                     id='Rostral_array',
+#                     style={'height': '1000px', 'width': '100%'}
+#                 )
+#             ])
+#         ], width=4)
+#     ])  # Remove gutters between columns
+# ], fluid=True)  # Make container full-width
+
+
+app.layout = dbc.Container([
+    # WebSocket connection
     #WebSocket(id="ws", url="ws://192.168.42.150:7890"),
     WebSocket(id="ws", url="ws://127.0.0.1:7890"),
+    
+    # Data stores
     dcc.Store(id='soh_json'),
     dcc.Store(id='stim_ack_json'),
+
+    # timer interrupt
+    dcc.Interval(
+        id='graph-update',
+        interval=200,  # in milliseconds (10 times per second = 100ms)
+        n_intervals=0
+    ),
+    
+    # Main row with three columns
     dbc.Row([
+        # Left column - Caudal Array
         dbc.Col([
-            html.Div([
-                dcc.Graph(figure=CaudalArray.fig,id='Caudal_array', style={'height': 650,'width':'100%'}),
+            dcc.Graph(
+                figure=CaudalArray.fig,
+                id='Caudal_array',
+                style={'height':'100%','width': '100%'}
+                # style={'height': '650px', 'width': '100%'}
+            )
+        ], width=2,className="h-100"),
+        
+        # Middle column - Image
+        # dbc.Col([
+        #     dcc.Graph(
+        #             figure=backImage.fig,
+        #             id='back_image',
+        #             style={'height':'200px','width': '100%'}
+        #             # style={'height': '1000px', 'width': '100%'}
+        #     ),
+        # ], width=6,className="h-100"),
+        
+        dbc.Col([
+            html.Img(
+                src='/assets/backplusLegend.png',
+                style={'height': '600px', 'width':'100%', 'object-fit':'contain'},
+            ),
+        ],width=2),
+        
+        # Right column - Rostral Array
+        dbc.Col([
+            dcc.Graph(
+                figure=RostralArray.fig,
+                id='Rostral_array',
+                style={'height':'100%','width': '100%'}
+                # style={'height': '650px', 'width': '100%'}
+            )
+        ], width=2, className="h-100"),
+
+        # data column - stim groups and stim graph
+        dbc.Col([
+            # stim scope
+            dbc.Row([
+                dcc.Graph(
+                    figure=stimScope.fig,
+                    id='stim_scope',
+                )
+            ]),
+            
+            # stim packets visualized here
+            dbc.Row([
+                #caudal
+                dbc.Col([
+                    html.Div(
+                        id='CaudalStimGroups',
+                    ),
+                ]),
+
+                #rostral
+                dbc.Col([
+                    html.Div(
+                        id='RostralStimGroups',
+                    )
+                ]),
             ])
-        ], width=3),
-        dbc.Col([
-                html.Div(id='CaudalStimGroups')
-        ], width=3,style={'padding': 10, 'flex': 1}),
-    ]),
-    dbc.Row([
-        dbc.Col([
-            html.Div([
-                dcc.Graph(figure=RostralArray.fig,id='Rostral_array', style={'height': 650,'width':'100%'}),
-            ])
-        ], width=3),
-        dbc.Col([
-                html.Div(id='RostralStimGroups')
-        ], width=3,style={'padding': 10, 'flex': 1}),
-    ]),
+
+        ], width=2, className="h-100"),
+    ], className="h-100 w-100")
+], fluid=True)
+
+
+
+        # dbc.Col([
+        #         html.Div(id='CaudalStimGroups')
+        # ], width=3,style={'padding': 10, 'flex': 1}),
+
+
+
+    # dbc.Row([
+    #     dbc.Col([
+    #         html.Div([
+    #             dcc.Graph(figure=CaudalArray.fig,id='Caudal_array', style={'height': 650,'width':'100%'}),
+    #         ])
+    #     ], width=3),
+    #     dbc.Col([
+    #             html.Div(id='CaudalStimGroups')
+    #     ], width=3,style={'padding': 10, 'flex': 1}),
+    # ]),
+    # dbc.Row([
+    #     dbc.Col([
+    #         html.Div([
+    #             dcc.Graph(figure=RostralArray.fig,id='Rostral_array', style={'height': 650,'width':'100%'}),
+    #         ])
+    #     ], width=3),
+    #     dbc.Col([
+    #             html.Div(id='RostralStimGroups')
+    #     ], width=3,style={'padding': 10, 'flex': 1}),
+    # ]),
     # dbc.Col([
     #     html.Div(id="StimGroups")
     # ])
-])
+# ])
 
 @app.callback(
         Output("ws", "send"),
@@ -109,7 +249,7 @@ def updateElectrodeArrays(stim,soh):
     """
     # guard clause (startup may have some extra Nones)
     if stim is None or soh is None: 
-        print("hit",flush=True)
+        # print("hit",flush=True)
         return dash.no_update , dash.no_update
     
     # repackage pins
@@ -124,8 +264,10 @@ def updateElectrodeArrays(stim,soh):
     CaudalArray.update(Pins)
     RostralArray = ElectrodeArray("Rostral")
     RostralArray.update(Pins)
+
     
     return CaudalArray.fig , RostralArray.fig
+
 
 
 @app.callback( 
@@ -165,7 +307,6 @@ def updateStimGroups(stimGroups):
             return "Caudal"
         else:
             return "Rostral"
-        return pins
     
 
     # parse stim packet
@@ -179,8 +320,22 @@ def updateStimGroups(stimGroups):
         elif loc == "Rostral":
             rostralFigs.append(dcc.Graph(figure=sg.fig))
 
+    # set stim flag here, as a stim packet has been recieved!
+    stimScope.stimFlag = True
+
     return caudalFigs , rostralFigs 
 
+
+
+### callback to update stimScope
+@app.callback(
+    Output('stim_scope', 'figure'),
+    [Input('graph-update', 'n_intervals')]
+)
+def update_graph(n):
+    # put somemething into graph
+    stimScope.update()
+    return stimScope.fig
 
 
 
@@ -414,7 +569,8 @@ def updateStimGroups(stimGroups):
 
 
 
-# app.run_server(debug=True, use_reloader=False) 
-app.run_server(debug=False, use_reloader=False) 
+# # app.run_server(debug=True, use_reloader=False) 
+# app.run_server(debug=False, use_reloader=False) 
 
-
+if __name__ == '__main__':
+    app.run_server(debug=True)  # This enables hot reloading

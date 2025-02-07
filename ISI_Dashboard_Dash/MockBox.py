@@ -8,6 +8,7 @@ async def hello(websocket):
         await websocket.send("ID_REQ")
         name = await websocket.recv()
         if name == str(1):
+            print("connected to mock-box as listner")
             break
 
     # trickle dictionary.
