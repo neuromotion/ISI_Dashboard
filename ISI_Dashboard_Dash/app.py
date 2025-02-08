@@ -76,8 +76,8 @@ app = DashProxy(external_stylesheets=[dbc.themes.BOOTSTRAP]) #does this need to 
 
 app.layout = dbc.Container([
     # WebSocket connection
-    #WebSocket(id="ws", url="ws://192.168.42.150:7890"),
-    WebSocket(id="ws", url="ws://127.0.0.1:7890"),
+    WebSocket(id="ws", url="ws://192.168.42.1:7890"),
+    # WebSocket(id="ws", url="ws://127.0.0.1:7890"),
     
     # Data stores
     dcc.Store(id='soh_json'),
@@ -95,8 +95,8 @@ app.layout = dbc.Container([
         # Left column - Caudal Array
         dbc.Col([
             dcc.Graph(
-                figure=CaudalArray.fig,
-                id='Caudal_array',
+                figure=RostralArray.fig,
+                id='Rostral_array',
                 style={'height':'100%','width': '100%'}
                 # style={'height': '650px', 'width': '100%'}
             )
@@ -122,8 +122,8 @@ app.layout = dbc.Container([
         # Right column - Rostral Array
         dbc.Col([
             dcc.Graph(
-                figure=RostralArray.fig,
-                id='Rostral_array',
+                figure=CaudalArray.fig,
+                id='Caudal_array',
                 style={'height':'100%','width': '100%'}
                 # style={'height': '650px', 'width': '100%'}
             )
@@ -222,10 +222,10 @@ def parseMessage(e):
     ed = json.loads(e['data'])
 
     if ed['msg_type'] == "soh_json":
-        out[1] = ed['msg']
+        out[1] = json.loads(ed['msg'])
     
     elif ed['msg_type'] == "stim_ack_json":
-        out[2] = ed['msg']
+        out[2] = json.loads(ed['msg'])
 
     #log.parseMessage(out)
     
@@ -254,8 +254,8 @@ def updateElectrodeArrays(stim,soh):
     
     # repackage pins
     Pins = {}
-    Pins['Gnd']       = soh['Gnd']
-    Pins['Ref']       = soh['Ref']
+    Pins['Gnd']       = soh['gnd']
+    Pins['Ref']       = soh['ref']
     Pins['elecCath']  = utils.dictCollect(stim,'elecCath')
     Pins['elecAno']    = utils.dictCollect(stim,'elecAno')
 
@@ -573,4 +573,5 @@ def update_graph(n):
 # app.run_server(debug=False, use_reloader=False) 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)  # This enables hot reloading
+    # app.run_server(debug=True)  # This enables hot reloading
+    app.run_server(host='0.0.0.0', port=8050)

@@ -389,7 +389,7 @@ class StimGroup():
                 ),
                 marker_color=df['color'],
                 mode='markers+text',
-                marker={'size': 40}
+                marker={'size': 40,'symbol':'square'}
             ))
 
         # annotate amplitude, freq and phase for SG
